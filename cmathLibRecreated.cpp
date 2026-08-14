@@ -47,7 +47,7 @@ namespace mth{
     
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------
     
-    // Overloaded version of function to handle decimal part of power
+    // Power function to handle decimal exponents
     double pwr(double base, double exponent){
         if (exponent < 0)
         return 1.0 / pwr(base, -exponent);
