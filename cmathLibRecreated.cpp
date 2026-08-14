@@ -361,6 +361,5 @@ namespace mth{
     
 }    
 int main(){
-    std::cout << mth::frexp(4);
     return 0;
 }
