@@ -49,9 +49,9 @@ namespace mth{
     
     // Power function to handle decimal exponents
     double pwr(double base, double exponent){
-        if (exponent < 0)
+        if (exponent < 0){
         return 1.0 / pwr(base, -exponent);
-        
+        }
         long long integerPart = flr(exponent);
         double fractionalPart = exponent - integerPart;
 
@@ -88,26 +88,23 @@ namespace mth{
 
     // Calculates the root of something using Newton's method
     double nthRoot(double num, int root){
-        if (root <= 0)
-        {
+        if (root <= 0){
             std::cout << "Root must be positive.\n";
             return ERROR;
         }
 
-        if (num < 0 && root % 2 == 0)
-        {
+        if (num < 0 && root % 2 == 0){
             std::cout << "Can't take an even root of a negative number.\n";
             return ERROR;
         }
 
-        if (num == 0)
+        if (num == 0){
             return 0;
-
+        }
         double x = (num > 1) ? num / root : 1.0;
         const double epsilon = 1e-10;
 
-        for (int i = 0; i < 1000; i++)
-        {
+        for (int i = 0; i < 1000; i++){
             x = ((root - 1) * x +
                  num / pwrInt(x, static_cast<long long>(root - 1)))
                 / root;
@@ -272,8 +269,7 @@ namespace mth{
 
     // Calculates logarithm with any base and exponent
     double log(double base, double argument){
-        if (base <= 0 || base == 1 || argument <= 0)
-        {
+        if (base <= 0 || base == 1 || argument <= 0){
             std::cout << "Invalid log, exiting...\n";
             return ERROR;
         }
@@ -282,8 +278,7 @@ namespace mth{
         double high = argument;
         const double epsilon = 1e-10;
 
-        while (high - low > epsilon)
-        {
+        while (high - low > epsilon){
             double mid = (low + high) / 2.0;
 
             if (pwr(base, mid) < argument)
@@ -324,8 +319,7 @@ namespace mth{
 
     // With x expressed as m*2^n, returns the value of m (a value between 0.5 and 1.0) and writes the value of n to the memory at the pointer y
     double frexp(double x, int* y = nullptr){
-        if (x == 0.0)
-        {
+        if (x == 0.0){
             if (y) *y = 0;
             return 0.0;
         }
@@ -333,24 +327,23 @@ namespace mth{
         int e = 0;
         double m = abs(x);
 
-        while (m >= 1.0)
-        {
+        while (m >= 1.0){
             m /= 2.0;
             e++;
         }
 
-        while (m < 0.5)
-        {
+        while (m < 0.5){
             m *= 2.0;
             e--;
         }
 
-        if (x < 0)
+        if (x < 0){
             m = -m;
+        }
 
-        if (y)
+        if (y){
             *y = e;
-
+        }
         return m;
     }
 
