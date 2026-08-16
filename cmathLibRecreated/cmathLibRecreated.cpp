@@ -1,49 +1,30 @@
 #include <iostream>
+#include "cmathLibRecreatedHeader.hpp" // Header file contains user-defined types and forward declarations
+
 #define ERROR -1
 namespace mth{
-    // FORWARD DECLARATIONS & CONSTS BELOW--------------------------------------------------------------------------------------------------------------------------------
-    double sqrt(double num);
-    double nthRoot(double num, int root);
-    double cbrt(double num);
-    double abs(double num);
-    double pwrInt(double base, long long exponent);
-    double pwr(double base, double exponent);
-    int flr(double num);
-    const double rf = 2.236067977500; //Square root of 5
-    const double phi = 1.618033988750; //Golden Ratio
+    // CONSTS BELOW----------------------------------------------------------------------------------------------------------------------------------------------
+    const double rf = 2.236067977500; // Square root of 5
+    const double phi = 1.618033988750; // Golden Ratio
     const double pi = 3.141592653589;
     const double e = 2.718281828459;
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------
     
-    struct Roots{
-        double x1;
-        double x2;
-    };
+    // struct Sine{
+    //     const double sin0 = 0;
+    //     const double sin30 = 0.5;
+    //     const double sin45 = sqrt(2)/2;
+    //     const double sin60 = sqrt(3)/2;
+    //     const double sin90 = 1;
+    // };
     
-    struct Fraction{
-        long long int numerator;
-        long long int denominator;
-    };
-    
-    struct Sine{ //Currently obsolete
-        const double sin0 = 0;
-        const double sin30 = 0.5;
-        const double sin45 = sqrt(2)/2;
-        const double sin60 = sqrt(3)/2;
-        const double sin90 = 1;
-    };
-    
-    struct Cosine{ //Currently obsolete
-        const double cos0 = 1;
-        const double cos30 = sqrt(3)/2;
-        const double cos45 = sqrt(2)/2;
-        const double cos60 = 0.5;
-        const double cos90 = 0;
-    };
-    
-    // Annoying forward declarations that have to be after the structs above ------------------------------------------------------------------------------------
-    
-    Fraction decimalToFrac(long double num);
+    // struct Cosine{
+    //     const double cos0 = 1;
+    //     const double cos30 = sqrt(3)/2;
+    //     const double cos45 = sqrt(2)/2;
+    //     const double cos60 = 0.5;
+    //     const double cos90 = 0;
+    // };
     
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------
     
@@ -139,8 +120,7 @@ namespace mth{
     }
 
     // Returns the factorial value of a number
-    long long int factorial(int num){
-
+    unsigned long long factorial(unsigned long long num){
         if (num == 0){
             return 1;
         }
@@ -194,9 +174,9 @@ namespace mth{
     }
 
     // Determines Highest Common Factor
-    long long int HCF(long long int a, long long int b){
+    long long HCF(long long a, long long b){
         while (b != 0){
-            long long int temp = b;
+            long long temp = b;
             b = a % b;
             a = temp;
         }
@@ -205,10 +185,10 @@ namespace mth{
 
     // Converts a decimal to a fraction with 6 digits of precision, thus all fractions outputted from this function should be considered tiny approximations
     Fraction decimalToFrac(long double num){
-        long long int denominator = 100000;
-        long long int numerator = (long long int)(num * denominator);
+        long long denominator = 100000;
+        long long numerator = static_cast<long long>(num * denominator);
 
-        long long int divisor = HCF(numerator, denominator);
+        long long divisor = HCF(numerator, denominator);
 
         Fraction result;
         result.numerator = numerator / divisor;
@@ -318,7 +298,7 @@ namespace mth{
     }
 
     // With x expressed as m*2^n, returns the value of m (a value between 0.5 and 1.0) and writes the value of n to the memory at the pointer y
-    double frexp(double x, int* y = nullptr){
+    double frexp(double x, int* y){
         if (x == 0.0){
             if (y) *y = 0;
             return 0.0;
@@ -352,7 +332,4 @@ namespace mth{
         return pwr(e, x);
     }
     
-}    
-int main(){
-    return 0;
 }
