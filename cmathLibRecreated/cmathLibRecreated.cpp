@@ -9,7 +9,9 @@ namespace mth{
     const double pi = 3.141592653589;
     const double e = 2.718281828459;
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------
-    
+
+    // The structs below are commented out because they're never used.
+
     // struct Sine{
     //     const double sin0 = 0;
     //     const double sin30 = 0.5;
